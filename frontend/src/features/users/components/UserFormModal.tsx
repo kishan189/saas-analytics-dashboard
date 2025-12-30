@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import * as Dialog from '@radix-ui/react-dialog';
-import type { User, UserRole } from '../../../types';
+import type { User } from '../../../types';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 
 // Form schema - password is optional for edit mode
@@ -33,12 +33,13 @@ const editUserSchema = z.object({
   isActive: z.boolean(),
 });
 
-type UserFormData = z.infer<typeof createUserSchema>;
+type CreateUserFormData = z.infer<typeof createUserSchema>;
+type EditUserFormData = z.infer<typeof editUserSchema>;
 
 interface UserFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: UserFormData) => Promise<void>;
+  onSubmit: (data: CreateUserFormData | EditUserFormData) => Promise<void>;
   user?: User | null;
   isLoading?: boolean;
 }
@@ -57,8 +58,8 @@ const UserFormModal = ({
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<UserFormData>({
-    resolver: zodResolver(isEditMode ? editUserSchema : createUserSchema),
+  } = useForm<CreateUserFormData | EditUserFormData>({
+    resolver: zodResolver(isEditMode ? editUserSchema : createUserSchema) as any,
     defaultValues: {
       email: user?.email || '',
       password: '',
@@ -89,11 +90,11 @@ const UserFormModal = ({
     }
   }, [user, reset]);
 
-  const onFormSubmit = async (data: UserFormData) => {
+  const onFormSubmit = async (data: CreateUserFormData | EditUserFormData) => {
     // Remove password if empty (for edit mode)
-    if (isEditMode && !data.password) {
+    if (isEditMode && 'password' in data && !data.password) {
       const { password, ...rest } = data;
-      await onSubmit(rest as UserFormData);
+      await onSubmit(rest as EditUserFormData);
     } else {
       await onSubmit(data);
     }

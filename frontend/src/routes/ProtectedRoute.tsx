@@ -9,7 +9,7 @@
  * - Wraps authenticated routes with AppLayout
  */
 
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
 import AppLayout from '../components/layout/AppLayout';
 

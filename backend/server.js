@@ -26,9 +26,48 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Security Middleware
 app.use(helmet()); // Sets various HTTP headers for security
+
+// CORS configuration - support multiple origins
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  process.env.FRONTEND_URL, // Custom frontend URL from env (can be comma-separated)
+  process.env.NETLIFY_SITE_URL, // Netlify production URL
+].filter(Boolean); // Remove undefined values
+
+// Parse comma-separated FRONTEND_URL if provided
+const parseOrigins = (origins) => {
+  const parsed = [];
+  origins.forEach(origin => {
+    if (origin && origin.includes(',')) {
+      parsed.push(...origin.split(',').map(o => o.trim()));
+    } else if (origin) {
+      parsed.push(origin);
+    }
+  });
+  return parsed;
+};
+
+const allAllowedOrigins = parseOrigins(allowedOrigins);
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+      
+      // Check if origin is in allowed list
+      if (allAllowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else if (origin.includes('.netlify.app')) {
+        // Allow all Netlify preview and production deployments
+        callback(null, true);
+      } else if (process.env.NODE_ENV !== 'production') {
+        // For development, allow all origins (less strict)
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true, // Allow cookies to be sent
   })
 );
