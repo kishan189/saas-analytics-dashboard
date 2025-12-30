@@ -28,7 +28,7 @@ const ActivityLogsPage = () => {
   } = useGetActivityLogsQuery({
     page,
     limit,
-    action: actionFilter || undefined,
+    action: (actionFilter as ActivityLog['action']) || undefined,
   });
 
   // Format timestamp

@@ -12,17 +12,16 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { AxiosError } from 'axios';
-import { API_BASE_URL } from '../../utils/constants';
-import { tokenStorage, clearAuthData } from '../../utils/storage';
+import { clearAuthData } from '../../utils/storage';
 import apiClient from '../../services/api';
 
 // Custom base query using our axios instance
 const axiosBaseQuery =
   (): BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError> =>
-  async ({ url, method, body, data, params }) => {
+  async ({ url, method, body, params }) => {
     try {
       // RTK Query uses 'body', axios uses 'data' - map accordingly
-      const requestData = body || data;
+      const requestData = body;
       
       // Ensure URL is valid
       if (!url) {

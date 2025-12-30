@@ -48,14 +48,14 @@ const UsersPage = () => {
     page,
     limit: 10,
     search,
-    role: roleFilter || undefined,
+    role: (roleFilter as 'admin' | 'manager' | 'viewer') || undefined,
     isActive: isActiveFilter || undefined,
   });
 
   // Mutations
   const [createUser, { isLoading: isCreating }] = useCreateUserMutation();
   const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
-  const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
 
   const handleCreateUser = async (data: CreateUserPayload) => {
     try {
@@ -257,7 +257,25 @@ const UsersPage = () => {
       <UserFormModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        onSubmit={editingUser ? handleUpdateUser : handleCreateUser}
+        onSubmit={async (data) => {
+          if (editingUser) {
+            // For edit mode, password is optional
+            const updateData: UpdateUserPayload = {
+              email: data.email,
+              name: data.name,
+              role: data.role,
+              isActive: data.isActive,
+            };
+            // Only include password if provided
+            if ('password' in data && data.password) {
+              updateData.password = data.password;
+            }
+            await handleUpdateUser(updateData);
+          } else {
+            // For create mode, password is required
+            await handleCreateUser(data as CreateUserPayload);
+          }
+        }}
         user={editingUser}
         isLoading={isCreating || isUpdating}
       />

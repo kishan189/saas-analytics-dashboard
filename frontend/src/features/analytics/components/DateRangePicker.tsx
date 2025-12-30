@@ -7,7 +7,6 @@
  * - Accessible form controls
  */
 
-import { useState } from 'react';
 import { Button } from '../../../components/ui';
 
 interface DateRangePickerProps {
@@ -165,7 +164,7 @@ const DateRangePicker = ({
           {(['day', 'week', 'month'] as const).map((option) => (
             <Button
               key={option}
-              variant={groupBy === option ? 'default' : 'outline'}
+              variant={groupBy === option ? 'primary' : 'outline'}
               size="sm"
               onClick={() => onGroupByChange(option)}
               disabled={isLoading}

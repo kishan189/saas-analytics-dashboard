@@ -8,8 +8,8 @@
  * - User menu with dropdown
  */
 
-import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import { useAuth } from '../../features/auth/hooks/useAuth';
 import { ROUTES } from '../../utils/constants';
@@ -23,7 +23,6 @@ interface NavbarProps {
 const Navbar = ({ onMenuClick }: NavbarProps) => {
   const { user } = useAppSelector((state) => state.auth);
   const { logout } = useAuth();
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
@@ -178,7 +177,6 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
                   align="end"
                   sideOffset={5}
                   onCloseAutoFocus={(e) => e.preventDefault()}
-                  modal={false}
                 >
                   <DropdownMenu.Item
                     asChild

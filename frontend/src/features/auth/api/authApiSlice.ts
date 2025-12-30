@@ -67,7 +67,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
     // Get current user
     getMe: builder.query<{ user: User }, void>({
-      query: () => '/auth/me',
+      query: () => ({
+        url: 'auth/me',
+        method: 'GET',
+      }),
       providesTags: ['User'],
     }),
   }),
