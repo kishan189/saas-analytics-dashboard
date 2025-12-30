@@ -94,6 +94,8 @@ const ThemeToggle = () => {
           className="min-w-[180px] bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-1 z-50"
           align="end"
           sideOffset={5}
+          onCloseAutoFocus={(e) => e.preventDefault()}
+          modal={false}
         >
           <div className="px-2 py-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
             Theme

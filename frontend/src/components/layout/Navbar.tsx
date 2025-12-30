@@ -177,6 +177,8 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
                   className="min-w-[200px] bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-1 z-50"
                   align="end"
                   sideOffset={5}
+                  onCloseAutoFocus={(e) => e.preventDefault()}
+                  modal={false}
                 >
                   <DropdownMenu.Item
                     asChild
