@@ -53,7 +53,13 @@
 html {
   /* Reserve space for scrollbar to prevent layout shifts */
   scrollbar-gutter: stable;
-  overflow-y: scroll; /* Always show scrollbar space, even when not needed */
+  /* Use auto to only show scrollbar when needed, but space is always reserved */
+  overflow-y: auto;
+  /* Prevent horizontal scrolling */
+  overflow-x: hidden;
+  /* Ensure html doesn't cause layout shifts */
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -64,6 +70,11 @@ body {
   /* Ensure body doesn't cause layout shifts */
   margin: 0;
   padding: 0;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Ensure body width accounts for scrollbar */
+  box-sizing: border-box;
 }
 
 /* Prevent navbar layout shifts - ensure consistent positioning */
@@ -73,6 +84,8 @@ nav[class*="fixed"] {
   box-sizing: border-box;
   /* Ensure navbar width calculation is stable */
   width: 100%;
+  /* Prevent layout shifts from scrollbar */
+  right: 0;
 }
 
 /* On large screens, adjust navbar width to account for sidebar */
@@ -80,5 +93,21 @@ nav[class*="fixed"] {
   nav[class*="fixed"] {
     width: calc(100% - 256px); /* 256px = w-64 (sidebar width) */
     left: 256px;
+    right: 0;
   }
+}
+
+/* Prevent layout shifts when Radix UI dropdowns open */
+[data-radix-portal] {
+  /* Ensure portals don't affect body scroll */
+  position: fixed;
+}
+
+/* Ensure main content area doesn't shift */
+main {
+  /* Prevent horizontal overflow */
+  overflow-x: hidden;
+  /* Ensure consistent width calculation */
+  width: 100%;
+  max-width: 100%;
 }
