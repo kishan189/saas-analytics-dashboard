@@ -18,7 +18,7 @@ import { tokenStorage, clearAuthData } from '../utils/storage';
 // Using ReturnType to infer the type from axios.create() - more reliable than importing AxiosInstance
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000, // 30 seconds
+  timeout: 60000, // 60 seconds
   headers: {
     'Content-Type': 'application/json',
   },
