@@ -26,6 +26,8 @@ const DashboardPage = () => {
     refetch,
   } = useGetDashboardKPIsQuery({});
 
+  console.log("kpisData",kpisData);
+
   if (isError) {
     return (
       <div>
