@@ -8,7 +8,7 @@
  * - User menu with dropdown
  */
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import { useAuth } from '../../features/auth/hooks/useAuth';
@@ -23,13 +23,13 @@ interface NavbarProps {
 const Navbar = ({ onMenuClick }: NavbarProps) => {
   const { user } = useAppSelector((state) => state.auth);
   const { logout } = useAuth();
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement global search
-    console.log('Search:', searchQuery);
-  };
+  // const handleSearch = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   // TODO: Implement global search
+  //   console.log('Search:', searchQuery);
+  // };
 
   const handleLogout = async () => {
     await logout();
