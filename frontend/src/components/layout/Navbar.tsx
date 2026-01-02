@@ -87,7 +87,7 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
           </div>
 
           {/* Center: Search */}
-          <div className="flex-1 max-w-lg mx-4 hidden md:block min-w-0">
+          {/* <div className="flex-1 max-w-lg mx-4 hidden md:block min-w-0">
             <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
@@ -112,7 +112,7 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
                 </svg>
               </div>
             </form>
-          </div>
+          </div> */}
 
           {/* Right: Theme Toggle + User Menu */}
           <div className="flex items-center gap-2 flex-shrink-0">
