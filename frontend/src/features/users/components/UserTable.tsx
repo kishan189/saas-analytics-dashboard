@@ -102,14 +102,14 @@ const UserTable = ({ data, isLoading, onEdit, onDelete, currentUserId }: UserTab
             {onEdit && (
               <button
                 onClick={() => onEdit(user)}
-                className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors cursor-pointer"
               >
                 Edit
               </button>
             )}
             <button
               onClick={() => handleToggleStatus(user._id, user.isActive ?? true)}
-              className="text-sm font-medium text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 transition-colors"
+              className="text-sm font-medium text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 transition-colors cursor-pointer"
             >
               {user.isActive ? 'Deactivate' : 'Activate'}
             </button>
@@ -117,7 +117,7 @@ const UserTable = ({ data, isLoading, onEdit, onDelete, currentUserId }: UserTab
               <button
                 onClick={() => onDelete(user._id)}
                 disabled={user._id === currentUserId}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-colors cursor-pointer ${
                   user._id === currentUserId
                     ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
                     : 'text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300'

@@ -122,7 +122,7 @@ const UsersPage = () => {
           <p className="text-red-800 dark:text-red-300 mb-4">
             Error loading users: {error && 'data' in error ? (error.data as any)?.message : 'Unknown error'}
           </p>
-          <Button variant="danger" size="sm" onClick={() => refetch()}>
+          <Button variant="danger" size="sm" onClick={() => refetch()} className='cursor-pointer'>
             Retry
           </Button>
         </Card>
@@ -136,7 +136,7 @@ const UsersPage = () => {
         title="User Management"
         description="Manage users and their permissions"
         actions={
-          <Button variant="primary" onClick={handleCreate}>
+          <Button variant="primary" onClick={handleCreate} className='cursor-pointer'>
             + Create User
           </Button>
         }
@@ -173,7 +173,7 @@ const UsersPage = () => {
                 setRoleFilter(e.target.value);
                 setPage(1);
               }}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
             >
               <option value="">All Roles</option>
               <option value="admin">Admin</option>
@@ -193,9 +193,9 @@ const UsersPage = () => {
                 setIsActiveFilter(e.target.value);
                 setPage(1);
               }}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
             >
-              <option value="">All</option>
+              <option value="" >All</option>
               <option value="true">Active</option>
               <option value="false">Inactive</option>
             </select>
@@ -236,6 +236,7 @@ const UsersPage = () => {
                   size="sm"
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
+                  className='cursor-pointer'
                 >
                   Previous
                 </Button>
@@ -244,6 +245,7 @@ const UsersPage = () => {
                   size="sm"
                   onClick={() => setPage((p) => p + 1)}
                   disabled={page >= usersData.pagination.totalPages}
+                  className='cursor-pointer'
                 >
                   Next
                 </Button>

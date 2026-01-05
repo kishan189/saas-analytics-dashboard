@@ -46,7 +46,7 @@ const ThemeToggle = () => {
     if (effectiveTheme === 'dark') {
       return (
         <svg
-          className="h-5 w-5"
+          className="h-5 w-5 cursor-pointer"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -62,7 +62,7 @@ const ThemeToggle = () => {
     }
     return (
       <svg
-        className="h-5 w-5"
+        className="h-5 w-5 cursor-pointer"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
