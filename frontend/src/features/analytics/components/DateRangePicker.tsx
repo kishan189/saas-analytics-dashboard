@@ -111,6 +111,7 @@ const DateRangePicker = ({
             size="sm"
             onClick={() => handlePreset(preset)}
             disabled={isLoading}
+            className="cursor-pointer"
           >
             {preset.label}
           </Button>
@@ -149,6 +150,7 @@ const DateRangePicker = ({
             onClick={onApply}
             disabled={isLoading}
             size="sm"
+            className="cursor-pointer"
           >
             {isLoading ? 'Loading...' : 'Apply'}
           </Button>
@@ -168,6 +170,7 @@ const DateRangePicker = ({
               size="sm"
               onClick={() => onGroupByChange(option)}
               disabled={isLoading}
+              className="cursor-pointer"
             >
               {option.charAt(0).toUpperCase() + option.slice(1)}
             </Button>

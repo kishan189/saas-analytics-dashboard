@@ -77,7 +77,7 @@ const ActivityLogsPage = () => {
                   setActionFilter(e.target.value);
                   setPage(1); // Reset to first page when filter changes
                 }}
-                className="w-full sm:w-auto px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full sm:w-auto px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
               >
                 <option value="">All Actions</option>
                 <option value="login">Login</option>
@@ -213,6 +213,7 @@ const ActivityLogsPage = () => {
                   size="sm"
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
+                  className='cursor-pointer'
                 >
                   Previous
                 </Button>
@@ -221,6 +222,7 @@ const ActivityLogsPage = () => {
                   size="sm"
                   onClick={() => setPage((p) => p + 1)}
                   disabled={page >= logsData.pagination.totalPages}
+                  className='cursor-pointer'
                 >
                   Next
                 </Button>

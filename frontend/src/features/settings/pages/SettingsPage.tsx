@@ -71,7 +71,7 @@ const SettingsPage = () => {
               {/* Light Theme Option */}
               <button
                 onClick={() => handleThemeChange('light')}
-                className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all cursor-pointer ${
                   mode === 'light'
                     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
                     : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
@@ -90,7 +90,7 @@ const SettingsPage = () => {
               {/* Dark Theme Option */}
               <button
                 onClick={() => handleThemeChange('dark')}
-                className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all cursor-pointer ${
                   mode === 'dark'
                     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
                     : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
@@ -109,7 +109,7 @@ const SettingsPage = () => {
               {/* System Theme Option */}
               <button
                 onClick={() => handleThemeChange('system')}
-                className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all cursor-pointer ${
                   mode === 'system'
                     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
                     : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
